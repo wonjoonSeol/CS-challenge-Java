@@ -56,7 +56,7 @@ public class Question1Test {
     public void oneValue() {
         int[] portfolio = {65535};
         long startTime = System.nanoTime();
-        assertEquals(65535, Question1.bestMergedPortfolio(portfolio));
+        assertEquals(0, Question1.bestMergedPortfolio(portfolio));
         long endTime = System.nanoTime();
         System.out.println("Took "+ (endTime - startTime) + "ns");
     }
