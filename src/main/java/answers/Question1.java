@@ -14,7 +14,7 @@ public class Question1 {
 	private static int getBestPortfolio(Integer[] portfolios, int maxStockNum) {
 		int portfolioC = 0;
 		for (int i = 0; i < portfolios.length - 1; i++) {
-			for (int j = i; j < portfolios.length; j++) {
+			for (int j = i + 1; j < portfolios.length; j++) {
 				int current = portfolios[i] ^ portfolios[j];
 				if (portfolioC < current) portfolioC = current;
 				if (maxStockNum == portfolioC) return portfolioC;
