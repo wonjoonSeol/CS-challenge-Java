@@ -5,10 +5,9 @@ import java.util.HashSet;
 public class Question1 {
 
 	public static int bestMergedPortfolio(int[] portfolios) {
-//		if (portfolios.length == 1) return portfolios[0];
-//	    int maxStockNum = getMaxStockNum(portfolios);
+	    int maxStockNum = getMaxStockNum(portfolios);
 //	    Integer[] uniquePortfolio = checkDuplicate(portfolios);
-		return getBestPortfolio(portfolios);
+		return getBestPortfolio(portfolios, maxStockNum);
 	}
 
 	private static int getBestPortfolio(int[] portfolios) {
@@ -22,7 +21,7 @@ public class Question1 {
 		return portfolioC;
 	}
 
-	private static int getBestPortfolio(Integer[] portfolios, int maxStockNum) {
+	private static int getBestPortfolio(int[] portfolios, int maxStockNum) {
 		int portfolioC = 0;
 		for (int i = 0; i < portfolios.length - 1; i++) {
 			for (int j = i + 1; j < portfolios.length; j++) {
