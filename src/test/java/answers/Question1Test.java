@@ -40,5 +40,33 @@ public class Question1Test {
         long startTime = System.nanoTime();
         assertEquals(0, Question1.bestMergedPortfolio(portfolio));
         long endTime = System.nanoTime();
-        System.out.println("Took "+ (endTime - startTime) + "ns");    }
+        System.out.println("Took "+ (endTime - startTime) + "ns");
+    }
+
+    @Test
+    public void maxValueTest() {
+        int[] portfolio = {65535,65535,65535,65535,65535,65535,0,65535,65535,65535};
+        long startTime = System.nanoTime();
+        assertEquals(65535, Question1.bestMergedPortfolio(portfolio));
+        long endTime = System.nanoTime();
+        System.out.println("Took "+ (endTime - startTime) + "ns");
+    }
+
+    @Test
+    public void oneValue() {
+        int[] portfolio = {65535};
+        long startTime = System.nanoTime();
+        assertEquals(65535, Question1.bestMergedPortfolio(portfolio));
+        long endTime = System.nanoTime();
+        System.out.println("Took "+ (endTime - startTime) + "ns");
+    }
+
+    @Test
+    public void twoValueTest() {
+        int[] portfolio = {7, 8};
+        long startTime = System.nanoTime();
+        assertEquals(15, Question1.bestMergedPortfolio(portfolio));
+        long endTime = System.nanoTime();
+        System.out.println("Took "+ (endTime - startTime) + "ns");
+    }
 }
