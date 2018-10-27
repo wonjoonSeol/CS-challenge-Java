@@ -1,13 +1,15 @@
 package answers;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 
 public class Question1 {
 
 	public static int bestMergedPortfolio(int[] portfolios) {
 //	    int maxStockNum = getMaxStockNum(portfolios);
 //	    Integer[] uniquePortfolio = checkDuplicate(portfolios);
-		return getBestPortfolio(portfolios);
+		return getUniqueMax(portfolios);
 	}
 
 	private static int getBestPortfolio(int[] portfolios) {
@@ -28,6 +30,20 @@ public class Question1 {
 				int current = portfolios[i] ^ portfolios[j];
 				if (portfolioC < current) portfolioC = current;
 				if (maxStockNum == portfolioC) return portfolioC;
+			}
+		}
+		return portfolioC;
+	}
+
+	private static int getUniqueMax(int[] portfolios) {
+		int portfolioC = 0;
+		HashMap<Integer, Boolean> duplicateChecker = new LinkedHashMap<>();
+		for (int i = 0; i < portfolios.length - 1; i++) {
+			if (duplicateChecker.containsKey(portfolios[i])) continue;
+			for (int j = i + 1; j < portfolios.length; j++) {
+				if (duplicateChecker.containsKey(portfolios[j])) continue;
+				int current = portfolios[i] ^ portfolios[j];
+				if (portfolioC < current) portfolioC = current;
 			}
 		}
 		return portfolioC;
