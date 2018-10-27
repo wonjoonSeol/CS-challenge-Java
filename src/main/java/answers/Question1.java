@@ -1,14 +1,20 @@
 package answers;
 
+import java.util.HashSet;
+
 public class Question1 {
 
 	public static int bestMergedPortfolio(int[] portfolios) {
 		if (portfolios.length == 1) return portfolios[0];
-	    int portfolioC = 0;
 	    int maxStockNum = getMaxStockNum(portfolios);
+	    Integer[] uniquePortfolio = checkDuplicate(portfolios);
+		return getBestPortfolio(uniquePortfolio, maxStockNum);
+	}
 
-	    for (int i = 0; i < portfolios.length; i++) {
-	    	for (int j = i; j < portfolios.length; j++) {
+	private static int getBestPortfolio(Integer[] portfolios, int maxStockNum) {
+		int portfolioC = 0;
+		for (int i = 0; i < portfolios.length - 1; i++) {
+			for (int j = i; j < portfolios.length; j++) {
 				int current = portfolios[i] ^ portfolios[j];
 				if (portfolioC < current) portfolioC = current;
 				if (maxStockNum == portfolioC) return portfolioC;
@@ -17,13 +23,22 @@ public class Question1 {
 		return portfolioC;
 	}
 
+	private static Integer[] checkDuplicate(int[] portfolios) {
+		HashSet<Integer> set = new HashSet<>();
+		for (int portfolio : portfolios) {
+			set.add(portfolio);
+		}
+
+		return set.toArray(new Integer[0]);
+	}
+
 	private static int getMaxStockNum(int[] portfolios) {
-		int maxValue =  getMax(portfolios);
+		int maxValue =  getMaxValue(portfolios);
 		int bits = getNumberOfBits(maxValue);
 		return maxPossible(bits);
 	}
 
-	private static int getMax(int[] portfolios) {
+	private static int getMaxValue(int[] portfolios) {
 		int max = 0;
 		for (int num : portfolios) {
 			if (max < num) max = num;
