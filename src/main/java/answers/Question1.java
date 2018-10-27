@@ -9,7 +9,8 @@ public class Question1 {
 	public static int bestMergedPortfolio(int[] portfolios) {
 //	    int maxStockNum = getMaxStockNum(portfolios);
 //	    Integer[] uniquePortfolio = checkDuplicate(portfolios);
-		return getUniqueMax(portfolios);
+//		return getUniqueMax(portfolios);
+		return getBestPortfolio(portfolios);
 	}
 
 	private static int getBestPortfolio(int[] portfolios) {
