@@ -4,13 +4,13 @@ public class Question4 {
 
 	public static int selectionFailedTradedesks(String[][] rows, int numberMachines) {
 	    if (rows.length < 1) return 0;
-	    int minTime = 0;
+	    int minTime = Integer.MAX_VALUE;
         boolean isFound = false;
 
 	    for (int i = 0; i < rows.length; i++) {
             int conseq = numberMachines;
             int current = 0;
-	        for (int j = 0; j < rows[i].length; i++) {
+	        for (int j = 0; j < rows[i].length; j++) {
 	            if (rows[i][j].equals("X")) {
 	                conseq = numberMachines;
                 } else {
@@ -24,6 +24,6 @@ public class Question4 {
             }
         }
         if (isFound) return minTime;
-        return -1;
+        return 0;
 	}
 }
