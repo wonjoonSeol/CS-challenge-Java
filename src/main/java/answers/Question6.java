@@ -11,16 +11,27 @@ public class Question6 {
 		Stack<Path> paths = new Stack<>();
 		paths.push(new Path());
 
-		Path path = paths.pop();
-		int current = path.getVisited().get(path.getVisited().size() - 1);
-		for (int i = 0; i < times.length; i++)
-			if (current == targetServer) {
-				if (path.getDistance() < min) min = path.getDistance();
-				// consider hash
-			} else if (current != i && !path.getVisited().contains(current)) {
-				Path newPath = new Path(path, i, times[current][i]);
-				paths.push(newPath);
+		while (!paths.isEmpty()) {
+			Path path = paths.pop();
+//			System.out.println("Pop from Stack");
+//			System.out.println(path);
+			int current = path.getVisited().get(path.getVisited().size() - 1);
+			for (int i = 0; i < numServers; i++) {
+				if (current == targetServer) {
+//					System.out.println("Destination reached");
+					if (path.getDistance() < min) {
+						min = path.getDistance();
+						break;
+					}
+					// consider hash
+				} else if (current != i && !path.getVisited().contains(i)) {
+//					System.out.println("new Path added");
+					Path newPath = new Path(path, i, times[current][i]);
+					System.out.println(newPath);
+					paths.push(newPath);
+				}
 			}
+		}
 		return min;
 	}
 }

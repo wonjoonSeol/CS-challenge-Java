@@ -15,12 +15,8 @@ public class Path {
 
     public Path(Path path, int newNode, int amount) {
         distance = path.getDistance();
-        visited = path.getVisited();
+        visited = new ArrayList<>(path.getVisited());
         addNode(newNode, amount);
-    }
-
-    public Path(int distance) {
-        this.distance = distance;
     }
 
     public List<Integer> getVisited() {
@@ -34,5 +30,10 @@ public class Path {
     public void addNode(int visit, int amount) {
         visited.add(visit);
         distance += amount;
+    }
+
+    public String toString() {
+        return "{"+ distance + ", " + visited.toString() + "}";
+
     }
 }
