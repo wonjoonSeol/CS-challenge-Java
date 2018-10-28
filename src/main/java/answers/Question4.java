@@ -26,4 +26,6 @@ public class Question4 {
         if (isFound) return minTime;
         return 0;
 	}
+
+	// count x and compare with size
 }
