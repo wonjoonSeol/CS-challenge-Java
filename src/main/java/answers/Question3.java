@@ -9,6 +9,7 @@ import java.util.Set;
 
 public class Question3 {
 
+	// consider bitarray
 	public static int lowestExposureToExchanges(int numNodes, Edge[] edgeList) {
 		Map<Integer, Set> map = new HashMap<>();
 		for (Edge edge : edgeList) {
@@ -29,10 +30,12 @@ public class Question3 {
 			if (map.containsKey(i)) exchanges.addAll(map.get(i));
 		}
 
+		// number can be either trading exchanges or avoiding exchanges
 		int number = exchanges.size();
 //		System.out.println(number);
 		int remaining = numNodes - number;
 //		System.out.println(remaining);
+
 		return Math.abs(number - remaining);
 	}
 }

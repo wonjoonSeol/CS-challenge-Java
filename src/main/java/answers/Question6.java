@@ -27,7 +27,7 @@ public class Question6 {
 				} else if (current != i && !path.getVisited().contains(i)) {
 //					System.out.println("new Path added");
 					Path newPath = new Path(path, i, times[current][i]);
-					System.out.println(newPath);
+//					System.out.println(newPath);
 					paths.push(newPath);
 				}
 			}
