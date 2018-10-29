@@ -1,18 +1,19 @@
 package answers;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-
 public class Question1 {
 
 	public static int bestMergedPortfolio(int[] portfolios) {
-//	    int maxStockNum = getMaxStockNum(portfolios);
-//	    Integer[] uniquePortfolio = checkDuplicate(portfolios);
-//		return getUniqueMax(portfolios);
-		return getBestPortfolio(portfolios);
+		int portfolioC = 0;
+		for (int i = 0; i < portfolios.length - 1; i++) {
+			for (int j = i + 1; j < portfolios.length; j++) {
+				int current = portfolios[i] ^ portfolios[j];
+				if (portfolioC < current) portfolioC = current;
+			}
+		}
+		return portfolioC;
 	}
 
+	/*
 	private static int getBestPortfolio(int[] portfolios) {
 		int portfolioC = 0;
 		for (int i = 0; i < portfolios.length - 1; i++) {
@@ -105,4 +106,5 @@ public class Question1 {
 		}
 		throw new IndexOutOfBoundsException("twoToPowerUp only supported up to index 17");
 	}
+	*/
 }

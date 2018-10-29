@@ -46,7 +46,11 @@ public class Question4Test {
 
         String[][] arr1 = {{"2", "1", "X", "5", "4"}};
         timeMethod(arr1, 2, 3);
+
+        String[][] arr2 = {{"2", "1", "1", "X", "5", "4"}};
+        timeMethod(arr2, 2, 2);
     }
+
 
 
     @Test
