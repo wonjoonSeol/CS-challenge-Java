@@ -25,6 +25,8 @@ public class Question4 {
 	            if (conseq == 0) {
 	            	isFound = true;
 					if (current < minTime) minTime = current;
+					current = Integer.parseInt(rows[i][j]);
+					conseq = 1;
 				}
             }
         }

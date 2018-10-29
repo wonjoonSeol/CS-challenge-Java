@@ -29,13 +29,11 @@ public class Question3 {
 			if (exchanges.contains(i)) continue;
 			if (map.containsKey(i)) exchanges.addAll(map.get(i));
 		}
-
 		// number can be either trading exchanges or avoiding exchanges
 		int number = exchanges.size();
 //		System.out.println(number);
 		int remaining = numNodes - number;
 //		System.out.println(remaining);
-
 		return Math.abs(number - remaining);
 	}
 }

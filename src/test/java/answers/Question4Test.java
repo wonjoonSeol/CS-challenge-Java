@@ -32,6 +32,23 @@ public class Question4Test {
         timeMethod(arr, 2, 0);
     }
 
+
+    @Test
+    public void thisCaseShouldResetProperly() {
+        String[][] arr = {{"2", "X", "3", "2"}};
+        timeMethod(arr, 2, 5);
+    }
+
+    @Test
+    public void multipleAnswer() {
+        String[][] arr = {{"2", "1", "1", "5", "4"}};
+        timeMethod(arr, 2, 2);
+
+        String[][] arr1 = {{"2", "1", "X", "5", "4"}};
+        timeMethod(arr1, 2, 3);
+    }
+
+
     @Test
     public void emptyCase() {
         String[][] arr = new String[0][0];
