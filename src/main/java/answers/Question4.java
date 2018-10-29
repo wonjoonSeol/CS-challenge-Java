@@ -13,9 +13,10 @@ public class Question4 {
             int xNum = 0;
 	        for (int j = 0; j < rows[i].length; j++) {
 	            if (rows[i].length - xNum < numberMachines) break;
-
+	            // if (rows[i].length - (j + 1) + numberMachines - conseq < numberMachines) break;
 	        	if (rows[i][j].equals("X")) {
 	                conseq = numberMachines;
+	                current = 0;
 	                xNum++;
                 } else {
 	                conseq--;

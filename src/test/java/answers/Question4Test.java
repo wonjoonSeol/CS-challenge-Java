@@ -26,6 +26,11 @@ public class Question4Test {
         timeMethod(arr, 2, 5);
     }
 
+    @Test
+    public void thisCaseShouldReturnFalse() {
+        String[][] arr = {{"2", "X", "X", "2"}, {"4", "X", "X", "4"}, {"3", "X", "2", "X"}, {"X", "X", "X", "5"}};
+        timeMethod(arr, 2, 0);
+    }
 
     @Test
     public void emptyCase() {
