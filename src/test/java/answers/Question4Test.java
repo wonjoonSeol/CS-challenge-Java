@@ -26,6 +26,31 @@ public class Question4Test {
         timeMethod(arr, 2, 5);
     }
 
+
+    @Test
+    public void emptyCase() {
+        String[][] arr = new String[0][0];
+        timeMethod(arr, 2, 0);
+    }
+
+    @Test
+    public void testSize1() {
+        String[][] arr = {{"X", "3", "2"}};
+        timeMethod(arr, 2, 5);
+    }
+
+    @Test
+    public void notPossible() {
+        String[][] arr = {{"X", "3", "2"}};
+        timeMethod(arr, 5, 0);
+
+        String[][] arr1 = {{"X", "X", "2"}};
+        timeMethod(arr1, 3, 0);
+
+        String[][] arr2 = {{"X", "X", "X"}};
+        timeMethod(arr2, 1, 0);
+    }
+
     private void timeMethod(String[][] arr, int numberMachines, int expected) {
         long startTime = System.nanoTime();
         assertEquals(expected, Question4.selectionFailedTradedesks(arr, numberMachines));
