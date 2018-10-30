@@ -20,20 +20,15 @@ public class Question6 {
 
         for (int i = 0; i < numServers; i++) {
             if (i == current) continue;
-//            if (min < times[current][i]) continue;
+            if (min < times[current][i]) continue;
 
-            int temp;
-            if (memo[current] != Integer.MAX_VALUE) {
-                temp = memo[current];
-            } else {
-                temp = findShortestPath(numServers - 1, i, targetServer, times, memo);
-            }
+            int temp = memo[current] != Integer.MAX_VALUE ? memo[current] :
+                    findShortestPath(numServers - 1, i, targetServer, times, memo);
 
             if (temp != Integer.MAX_VALUE && temp + times[current][i] < min) {
                 min = temp + times[current][i];
             }
         }
-
         memo[current] = min;
         return min;
     }
