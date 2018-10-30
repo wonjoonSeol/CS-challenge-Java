@@ -14,13 +14,14 @@ public class Question6 {
     }
 
     public static int findShortestPath(int numServers, int current, int targetServer, int[][] times, int[] memo) {
-        int min = Integer.MAX_VALUE;
+        int min = memo[current];
         if (current == targetServer) return 0;
         if (numServers == 0) return Integer.MAX_VALUE;
 
         for (int i = 0; i < numServers; i++) {
             if (i == current) continue;
             if (min < times[current][i]) continue;
+            // minPossible so far < new edge
 
             int temp = memo[current] != Integer.MAX_VALUE ? memo[current] :
                     findShortestPath(numServers - 1, i, targetServer, times, memo);
