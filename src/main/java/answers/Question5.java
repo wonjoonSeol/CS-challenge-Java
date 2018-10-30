@@ -14,15 +14,12 @@ public class Question5 {
 
 	public static int minAllocations(int[] allowedAllocations, int total) {
         int memo[] = new int[total + 1];
-
         // Base case (If given value V is 0)
         memo[0] = 0;
-
         // Initialize all table values as Infinite
         for (int i = 1; i <= total; i++) {
             memo[i] = Integer.MAX_VALUE;
         }
-
         // Compute minimum coins required for all
         // values from 1 to total
         for (int i = 1; i <= total; i++) {
