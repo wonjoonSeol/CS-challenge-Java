@@ -13,6 +13,7 @@ public class Question2 {
 
 	public static int smallestDifference(int[] cashflowIn, int[] cashflowOut, int difference, int[] memo) {
 
+
 		return -1;
 	}
 }

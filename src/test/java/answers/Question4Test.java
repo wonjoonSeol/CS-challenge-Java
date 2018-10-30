@@ -49,6 +49,10 @@ public class Question4Test {
 
         String[][] arr2 = {{"2", "1", "1", "X", "5", "4"}};
         timeMethod(arr2, 2, 2);
+
+
+        String[][] arr3 = {{"2", "1", "1", "1", "1", "4", "6", "1"}};
+        timeMethod(arr3, 4, 4);
     }
 
 
@@ -60,7 +64,7 @@ public class Question4Test {
     }
 
     @Test
-    public void testSize1() {
+    public void testRowSize1() {
         String[][] arr = {{"X", "3", "2"}};
         timeMethod(arr, 2, 5);
     }
