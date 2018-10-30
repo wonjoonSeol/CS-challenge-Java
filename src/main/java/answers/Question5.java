@@ -24,6 +24,7 @@ public class Question5 {
             } else {
                 temp = Math.min(result, minAllocations(allowedAllocations, memo, current));
             }
+
             temp = temp == Integer.MAX_VALUE ? temp : temp + 1;
             if (temp < result) result = temp;
 

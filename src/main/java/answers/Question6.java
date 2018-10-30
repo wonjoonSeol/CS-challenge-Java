@@ -1,9 +1,28 @@
 package answers;
 
+import java.util.List;
 import java.util.Stack;
 
 public class Question6 {
 
+    public static int shortestServerRoute(int numServers, int targetServer, int[][] times) {
+        return findShortestPath(numServers, 0, targetServer, times);
+    }
+
+    public static int findShortestPath(int numServers, List<Integer> visited, int targetServer, int[][] times) {
+        if (currentServer == targetServer) return 0;
+        int result = Integer.MAX_VALUE;
+        for (int i = 0; i < numServers; i++) {
+            if (i == currentServer) continue;
+            int temp = findShortestPath(numServers, i, targetServer, times);
+            if (temp != Integer.MAX_VALUE && temp + times[currentServer][i] < result) {
+                result = times[currentServer][i];
+            }
+        }
+        return result;
+    }
+
+    /*
 	public static int shortestServerRoute(int numServers, int targetServer, int[][] times) {
 		if (numServers == 0) return 0;
 		int min = Integer.MAX_VALUE;
@@ -29,4 +48,5 @@ public class Question6 {
 		}
 		return min;
 	}
+	*/
 }
