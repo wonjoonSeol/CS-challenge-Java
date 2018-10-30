@@ -6,22 +6,37 @@ import java.util.Stack;
 public class Question6 {
 
     public static int shortestServerRoute(int numServers, int targetServer, int[][] times) {
-//        return findShortestPath(numServers, 0, targetServer, times);
-        return -1;
+        int[] memo = new int[numServers];
+        for (int i = 0; i < numServers; i++) {
+            memo[i] = Integer.MAX_VALUE;
+        }
+        return findShortestPath(numServers, 0, targetServer, times, memo);
     }
-//
-//    public static int findShortestPath(int numServers, List<Integer> visited, int targetServer, int[][] times) {
-//        if (currentServer == targetServer) return 0;
-//        int result = Integer.MAX_VALUE;
-//        for (int i = 0; i < numServers; i++) {
-//            if (i == currentServer) continue;
-//            int temp = findShortestPath(numServers, i, targetServer, times);
-//            if (temp != Integer.MAX_VALUE && temp + times[currentServer][i] < result) {
-//                result = times[currentServer][i];
-//            }
-//        }
-//        return result;
-//    }
+
+    public static int findShortestPath(int numServers, int current, int targetServer, int[][] times, int[] memo) {
+        int min = Integer.MAX_VALUE;
+        if (current == targetServer) return 0;
+        if (numServers == 0) return Integer.MAX_VALUE;
+
+        for (int i = 0; i < numServers; i++) {
+            if (i == current) continue;
+//            if (min < times[current][i]) continue;
+
+            int temp;
+            if (memo[current] != Integer.MAX_VALUE) {
+                temp = memo[current];
+            } else {
+                temp = findShortestPath(numServers - 1, i, targetServer, times, memo);
+            }
+
+            if (temp != Integer.MAX_VALUE && temp + times[current][i] < min) {
+                min = temp + times[current][i];
+            }
+        }
+
+        memo[current] = min;
+        return min;
+    }
 
     /*
 	public static int shortestServerRoute(int numServers, int targetServer, int[][] times) {
