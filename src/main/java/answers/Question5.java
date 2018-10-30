@@ -7,7 +7,7 @@ public class Question5 {
 
 	public static int shareExchange(int[] allowedAllocations, int totalValue) {
 //		int result = minAllocations(allowedAllocations, new HashMap<Integer, Integer>(), totalValue);
-		int result = minAllocations(allowedAllocations, 0);
+		int result = minAllocations(allowedAllocations, totalValue);
 		return result == Integer.MAX_VALUE ? 0 : result;
 	}
 
@@ -24,7 +24,7 @@ public class Question5 {
         }
 
         // Compute minimum coins required for all
-        // values from 1 to V
+        // values from 1 to total
         for (int i = 1; i <= total; i++) {
             // Go through all coins smaller than i
             for (int j = 0; j < allowedAllocations.length; j++) {
