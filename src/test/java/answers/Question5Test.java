@@ -33,7 +33,6 @@ public class Question5Test {
         timeMethod(arr1, 10, 0);
     }
 
-
     private void timeMethod(int[] arr, int total, int expected) {
         long startTime = System.nanoTime();
         assertEquals(expected, Question5.shareExchange(arr, total));
