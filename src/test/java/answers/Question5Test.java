@@ -26,9 +26,17 @@ public class Question5Test {
 
     @Test
     public void notAllocatedCase() {
-        int[] arr = {3, 4};
+        int[] arr = {7, 4};
+        timeMethod(arr, 10, 0);
+
+        int[] arr1 = {11};
+        timeMethod(arr1, 10, 0);
+    }
+
+
+    private void timeMethod(int[] arr, int total, int expected) {
         long startTime = System.nanoTime();
-        assertEquals(0, Question5.shareExchange(arr, 10));
+        assertEquals(expected, Question5.shareExchange(arr, total));
         long endTime = System.nanoTime();
         System.out.println("Took "+ (endTime - startTime) + "ns");
     }
