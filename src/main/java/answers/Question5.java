@@ -18,8 +18,9 @@ public class Question5 {
             if (total < allocation) continue;
             int current = total - allocation;
             int temp;
-            if (memo.containsKey(total)) {
-                temp = memo.get(total);
+
+            if (memo.containsKey(current)) {
+                temp = memo.get(current);
             } else {
                 temp = Math.min(result, minAllocations(allowedAllocations, memo, current));
             }
