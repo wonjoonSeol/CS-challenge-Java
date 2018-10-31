@@ -31,7 +31,7 @@ public class Question3 {
         while (checkedNodes != numNodes) {
             fillQueue(queue, checked, numNodes);
             int maxExchange = maxExchanges(map, numNodes, queue, checked);
-            System.out.println(maxExchange);
+//            System.out.println(maxExchange);
             exchanges += maxExchange;
         }
         int remaining = numNodes - exchanges;
@@ -43,7 +43,7 @@ public class Question3 {
         while (!queue.isEmpty()) {
             Node currentNode = queue.pop();
             int i = currentNode.name;
-            System.out.println("Current node " + i + " " + currentNode.isIndependent);
+//            System.out.println("Current node " + i + " " + currentNode.isIndependent);
             if (currentNode.isIndependent) independent++;
             checkedNodes++;
             localNodes++;
@@ -59,7 +59,7 @@ public class Question3 {
             }
 
         }
-        System.out.println("local nodes " + localNodes + ", independent " + independent);
+//        System.out.println("local nodes " + localNodes + ", independent " + independent);
         // take maximum as bigger is trading exchanges.
         return Math.max(localNodes - independent, independent);
     }
@@ -67,7 +67,7 @@ public class Question3 {
     public static void fillQueue(LinkedList<Node> queue, boolean[] checked, int numNodes) {
         for (int i = 1; i <= numNodes; i++) {
             if (!checked[i]) {
-                System.out.println("Fill queue with " + i);
+//                System.out.println("Fill queue with " + i);
                 checked[i] = true;
                 queue.add(new Node(i, true));
                 break;
