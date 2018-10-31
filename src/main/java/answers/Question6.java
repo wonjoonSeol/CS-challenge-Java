@@ -5,7 +5,7 @@ import java.util.PriorityQueue;
 public class Question6 {
     private static int[] distance;
 
-    
+
     // Heap O(VlogE) implementation, in this question E = V.
     public static int shortestServerRoute(int numServers, int targetServer, int[][] times) {
         distance = new int[numServers];

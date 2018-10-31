@@ -17,7 +17,7 @@ public class Question3 {
             graph[b][a] = true;
         }
 
-        int minCover = findMinCover(numNodes, edgeList.length, numNodes);
+        int minCover = findMinCover(numNodes, edgeList.length);
 //        System.out.println("Min Cover " + minCover);
         int maxIndependentSet = numNodes - minCover;
 //        System.out.println("Max Ind " + maxIndependentSet);
@@ -26,27 +26,27 @@ public class Question3 {
         return Math.abs(maxIndependentSet - remaining);
     }
 
-    public static boolean isCover(int V, int k, int E, int numNodes) {
+    public static boolean isCover(int V, int k, int E) {
         int set = (1 << k) - 1;
         int limit = (1 << V);
 
-        boolean[][] vis = new boolean[numNodes + 1][numNodes + 1];
+        boolean[][] vis = new boolean[V + 1][V + 1];
         while (set < limit) {
-            int cnt = 0;
+            int counter = 0;
 
-            for (int j = 1, v = 1 ; j < limit ; j = j << 1, v++) {
-                if ((set & j) > 0) {
-                    for (int x = 1 ; x <= V ; x++) {
-                        if (graph[v][x] && !vis[v][x]) {
-                            vis[v][x] = true;
-                            vis[x][v] = true;
-                            cnt++;
+            for (int i = 1, v = 1 ; i < limit ; i = i << 1, v++) {
+                if ((set & i) > 0) {
+                    for (int j = 1 ; j <= V ; j++) {
+                        if (graph[v][j] && !vis[v][j]) {
+                            vis[v][j] = true;
+                            vis[j][v] = true;
+                            counter++;
                         }
                     }
                 }
             }
 
-            if (cnt == E) return true;
+            if (counter == E) return true;
             int c = set & -set;
             int r = set + c;
             set = (((r^set) >> 2) / c) | r;
@@ -54,11 +54,11 @@ public class Question3 {
         return false;
     }
 
-    public static int findMinCover(int n, int m, int numNodes) {
+    public static int findMinCover(int n, int m) {
         int left = 1, right = n;
         while (right > left) {
             int mid = (left + right) >> 1;
-            if (isCover(n, mid, m, numNodes) == false) {
+            if (isCover(n, mid, m) == false) {
                 left = mid + 1;
             } else {
                 right = mid;
