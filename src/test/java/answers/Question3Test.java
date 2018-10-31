@@ -37,6 +37,11 @@ public class Question3Test {
         Edge[] edgelist = {new Edge(new int[] {1, 3}), new Edge(new int[] {3, 4}),
                 new Edge(new int[] {2, 6}), new Edge(new int[] {2, 5}), new Edge(new int[] {7, 8})};
         timeMethod(edgelist, 8, 2);
+
+        Edge[] edgelist1 = {new Edge(new int[] {1, 2}), new Edge(new int[] {2, 3}),
+                new Edge(new int[] {1, 3}), new Edge(new int[] {4, 5}),
+                new Edge(new int[] {4, 6}), new Edge(new int[] {5, 6})};
+        timeMethod(edgelist1, 6, 2);
     }
 
     @Test
@@ -44,11 +49,6 @@ public class Question3Test {
         Edge[] edgelist = {new Edge(new int[] {1, 2}), new Edge(new int[] {2, 3}),
                 new Edge(new int[] {1, 3})};
         timeMethod(edgelist, 3, 1);
-
-        Edge[] edgelist1 = {new Edge(new int[] {1, 2}), new Edge(new int[] {2, 3}),
-                new Edge(new int[] {1, 3}), new Edge(new int[] {4, 5}),
-                new Edge(new int[] {4, 6}), new Edge(new int[] {5, 6})};
-        timeMethod(edgelist1, 6, 2);
     }
 
     @Test

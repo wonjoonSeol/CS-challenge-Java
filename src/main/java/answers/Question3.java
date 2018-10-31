@@ -67,9 +67,6 @@ public class Question3 {
     }
 
 
-
-
-
     /* Assumes tree
     public static class Node {
         int name;
