@@ -1,8 +1,5 @@
 package answers;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Question5 {
 
 	public static int shareExchange(int[] allowedAllocations, int totalValue) {
@@ -13,7 +10,7 @@ public class Question5 {
 
 
 	public static int minAllocations(int[] allowedAllocations, int total) {
-        int memo[] = new int[total + 1];
+        int[] memo = new int[total + 1];
         // Base case (If given value V is 0)
         memo[0] = 0;
         // Initialize all table values as Infinite
