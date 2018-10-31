@@ -2,20 +2,16 @@ package answers;
 
 import helpers.Edge;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class Question3 {
-//
-//    public static int lowestExposureToExchanges(int numNodes, Edge[] edgeList) {
-//
-//    }
+    public static int checkedNodes;
 
-	// consider bitarray
 	public static int lowestExposureToExchanges(int numNodes, Edge[] edgeList) {
-		Map<Integer, Set> map = new HashMap<>();
+	    if (edgeList.length == 0) return numNodes;
+        checkedNodes = 0;
+
+	    Map<Integer, Set> map = new HashMap<>();
 		for (Edge edge : edgeList) {
 			int a = edge.getEdgeA();
 			int b = edge.getEdgeB();
@@ -28,16 +24,64 @@ public class Question3 {
 			map.put(b, setB);
 		}
 
-		Set<Integer> exchanges = new HashSet<>();
-		for (int i = 1; i <= numNodes; i++) {
-			if (exchanges.contains(i)) continue;
-			if (map.containsKey(i)) exchanges.addAll(map.get(i));
-		}
-		// number can be either trading exchanges or avoiding exchanges
-		int number = exchanges.size();
-//		System.out.println(number);
-		int remaining = numNodes - number;
-//		System.out.println(remaining);
-		return Math.abs(number - remaining);
+        boolean[] checked = new boolean[numNodes + 1];
+        LinkedList<Node> queue = new LinkedList();
+
+        int exchanges = 0;
+        while (checkedNodes != numNodes) {
+            fillQueue(queue, checked, numNodes);
+            int maxExchange = maxExchanges(map, numNodes, queue, checked);
+            System.out.println(maxExchange);
+            exchanges += maxExchange;
+        }
+        int remaining = numNodes - exchanges;
+        return Math.abs(exchanges - remaining);
 	}
+
+	public static int maxExchanges(Map<Integer, Set> map, int numNodes, LinkedList<Node> queue, boolean[] checked) {
+	    int localNodes = 0, independent = 0;
+        while (!queue.isEmpty()) {
+            Node currentNode = queue.pop();
+            int i = currentNode.name;
+            System.out.println("Current node " + i + " " + currentNode.isIndependent);
+            if (currentNode.isIndependent) independent++;
+            checkedNodes++;
+            localNodes++;
+            if (map.containsKey(i)) {
+                Iterator<Integer> itr = map.get(i).iterator();
+                while (itr.hasNext()) {
+                    int temp = itr.next();
+                    if (!checked[temp]) {
+                        queue.addLast(new Node(temp, !currentNode.isIndependent));
+                        checked[temp] = true;
+                    }
+                }
+            }
+
+        }
+        System.out.println("local nodes " + localNodes + ", independent " + independent);
+        // take maximum as bigger is trading exchanges.
+        return Math.max(localNodes - independent, independent);
+    }
+
+    public static void fillQueue(LinkedList<Node> queue, boolean[] checked, int numNodes) {
+        for (int i = 1; i <= numNodes; i++) {
+            if (!checked[i]) {
+                System.out.println("Fill queue with " + i);
+                checked[i] = true;
+                queue.add(new Node(i, true));
+                break;
+            }
+        }
+    }
+
+	public static class Node {
+	    public boolean isIndependent;
+	    public int name;
+
+	    public Node(int name, boolean isIndependent) {
+	        this.isIndependent = isIndependent;
+	        this.name = name;
+        }
+    }
 }

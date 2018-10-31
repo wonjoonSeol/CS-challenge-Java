@@ -53,8 +53,8 @@ public class Question2 {
 			result.add(sum);
 		} else {
 			generatePermutation(shorter, k + 1, sum + shorter[k], result);
-//			if (k != shorter.length - 1) generatePermutation(shorter, k + 1, sum, result);
             generatePermutation(shorter, k + 1, sum, result);
+//			if (k != shorter.length - 1) generatePermutation(shorter, k + 1, sum, result);
 		}
 	}
 
