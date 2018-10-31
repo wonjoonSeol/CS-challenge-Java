@@ -11,6 +11,9 @@ public class Question3Test {
     public void firstExampleShouldReturn1() {
         Edge[] edgelist = {new Edge(new int[] {1, 2}), new Edge(new int[] {2, 3})};
         timeMethod(edgelist, 3, 1);
+
+        Edge[] edgelist1 = {new Edge(new int[] {2, 1}), new Edge(new int[] {3, 2})};
+        timeMethod(edgelist1, 3, 1);
     }
 
     @Test
@@ -33,6 +36,27 @@ public class Question3Test {
     public void disjointExchanges() {
         Edge[] edgelist = {new Edge(new int[] {1, 3}), new Edge(new int[] {3, 4}),
                 new Edge(new int[] {2, 6}), new Edge(new int[] {2, 5}), new Edge(new int[] {7, 8})};
+        timeMethod(edgelist, 8, 2);
+    }
+
+    @Test
+    public void edgeCase1() {
+        Edge[] edgelist = {new Edge(new int[] {1, 2}), new Edge(new int[] {2, 3}),
+                new Edge(new int[] {1, 3})};
+        timeMethod(edgelist, 3, 1);
+
+        Edge[] edgelist1 = {new Edge(new int[] {1, 2}), new Edge(new int[] {2, 3}),
+                new Edge(new int[] {1, 3}), new Edge(new int[] {4, 5}),
+                new Edge(new int[] {4, 6}), new Edge(new int[] {5, 6})};
+        timeMethod(edgelist1, 6, 2);
+    }
+
+    @Test
+    public void treeStructureTest() {
+        Edge[] edgelist = {new Edge(new int[]{2, 1}), new Edge(new int[]{3, 1}),
+                new Edge(new int[]{4, 2}), new Edge(new int[]{5, 2}),
+                new Edge(new int[]{6, 3}), new Edge(new int[]{7, 5}), new Edge(new int[]{8, 5})
+        };
         timeMethod(edgelist, 8, 2);
     }
 

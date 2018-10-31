@@ -2,9 +2,132 @@ package answers;
 
 import helpers.Edge;
 
-import java.util.*;
-
 public class Question3 {
+    private static boolean[][] graph;
+
+    public static int lowestExposureToExchanges(int numNodes, Edge[] edgeList) {
+        if (numNodes == 0) return 0;
+        if (edgeList.length == 0) return numNodes;
+        graph = new boolean[numNodes + 1][numNodes + 1];
+        for (Edge edge : edgeList) {
+            int a = edge.getEdgeA();
+            int b = edge.getEdgeB();
+            graph[a][b] = true;
+            graph[b][a] = true;
+        }
+
+        int minCover = findMinCover(numNodes, edgeList.length, numNodes);
+        System.out.println("Min Cover " + minCover);
+        int maxIndependentSet = numNodes - minCover;
+        System.out.println("Max Ind " + maxIndependentSet);
+        int remaining = numNodes - maxIndependentSet;
+        System.out.println("remaining " + remaining);
+        return Math.abs(maxIndependentSet - remaining);
+    }
+
+    public static boolean isCover(int V, int k, int E, int numNodes) {
+        int set = (1 << k) - 1;
+        int limit = (1 << V);
+
+        boolean[][] vis = new boolean[numNodes + 1][numNodes + 1];
+        while (set < limit) {
+            int cnt = 0;
+
+            for (int j = 1, v = 1 ; j < limit ; j = j << 1, v++) {
+                if ((set & j) > 0) {
+                    for (int x = 1 ; x <= V ; x++) {
+                        if (graph[v][x] && !vis[v][x]) {
+                            vis[v][x] = true;
+                            vis[x][v] = true;
+                            cnt++;
+                        }
+                    }
+                }
+            }
+
+            if (cnt == E) return true;
+            int c = set & -set;
+            int r = set + c;
+            set = (((r^set) >> 2) / c) | r;
+        }
+        return false;
+    }
+
+    public static int findMinCover(int n, int m, int numNodes) {
+        int left = 1, right = n;
+        while (right > left) {
+            int mid = (left + right) >> 1;
+            if (isCover(n, mid, m, numNodes) == false) {
+                left = mid + 1;
+            } else {
+                right = mid;
+            }
+        }
+        return left;
+    }
+
+
+
+
+
+    /* Assumes tree
+    public static class Node {
+        int name;
+        int independentSize;
+        List<Node> children;
+
+        public Node(int name) {
+            this.name = name;
+            this.independentSize = 0;
+            children = new ArrayList<>();
+        }
+    }
+
+    public static int lowestExposureToExchanges(int numNodes, Edge[] edgeList) {
+        if (numNodes == 0) return 0;
+        Node[] nodes = new Node[numNodes + 1];
+        for (int i = 1; i <= numNodes; i++) {
+            nodes[i] = new Node(numNodes);
+        }
+
+        for (Edge edge : edgeList) {
+            if (edge.getEdgeA() < edge.getEdgeB()) {
+                nodes[edge.getEdgeA()].children.add(nodes[edge.getEdgeB()]);
+            } else {
+                nodes[edge.getEdgeB()].children.add(nodes[edge.getEdgeA()]);
+            }
+        }
+
+        int result = getIndependentSize(nodes[1]);
+        int remaining = numNodes - result;
+        return result - remaining;
+    }
+
+    public static int getIndependentSize(Node node) {
+
+        if (node.independentSize != 0) return node.independentSize;
+        if (node.children.isEmpty()) {
+           node.independentSize = 1;
+           return 1;
+        }
+
+        int childrenIndependent = 0;
+        for (Node child : node.children) {
+           childrenIndependent += getIndependentSize(child);
+        }
+
+        // Calculate size including the current node
+        int thisIndependent = 1;
+        for (Node child : node.children) {
+            for (Node grandChild : child.children) {
+                thisIndependent += getIndependentSize(grandChild);
+            }
+        }
+        return node.independentSize = Math.max(thisIndependent, childrenIndependent);
+    }
+*/
+
+    /* Not 'MIN' possible exchanges, or it doesn't find MAX vertex cover
     public static int checkedNodes;
 
 	public static int lowestExposureToExchanges(int numNodes, Edge[] edgeList) {
@@ -31,7 +154,7 @@ public class Question3 {
         while (checkedNodes != numNodes) {
             fillQueue(queue, checked, numNodes);
             int maxExchange = maxExchanges(map, queue, checked);
-//            System.out.println(maxExchange);
+            System.out.println(maxExchange);
             exchanges += maxExchange;
         }
         int remaining = numNodes - exchanges;
@@ -43,7 +166,7 @@ public class Question3 {
         while (!queue.isEmpty()) {
             Node currentNode = queue.pop();
             int i = currentNode.name;
-//            System.out.println("Current node " + i + " " + currentNode.isIndependent);
+            System.out.println("Current node " + i + " " + currentNode.isIndependent);
             if (currentNode.isIndependent) independent++;
             checkedNodes++;
             localNodes++;
@@ -59,7 +182,7 @@ public class Question3 {
             }
 
         }
-//        System.out.println("local nodes " + localNodes + ", independent " + independent);
+        System.out.println("local nodes " + localNodes + ", independent " + independent);
         // take maximum as bigger is trading exchanges.
         return Math.max(localNodes - independent, independent);
     }
@@ -84,4 +207,5 @@ public class Question3 {
 	        this.name = name;
         }
     }
+    */
 }

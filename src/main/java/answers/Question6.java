@@ -5,6 +5,7 @@ import java.util.PriorityQueue;
 public class Question6 {
     private static int[] distance;
 
+    /*
     // Heap O(VlogE) implementation, in this question E = V.
     public static int shortestServerRoute(int numServers, int targetServer, int[][] times) {
         distance = new int[numServers];
@@ -73,7 +74,10 @@ public class Question6 {
 //            return false;
 //        }
     }
-/*
+
+*/
+
+
     // O(V^2) Dijkstra
     public static int shortestServerRoute(int numServers, int targetServer, int[][] times) {
         boolean[] isUsed = new boolean[numServers];
@@ -113,9 +117,10 @@ public class Question6 {
         return index;
     }
 
-*/
 
-    // Previous method //
+
+
+    // ------------- Previous methods -------------- //
 
     /*
     public static int shortestServerRoute(int numServers, int targetServer, int[][] times) {
