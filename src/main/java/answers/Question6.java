@@ -5,7 +5,7 @@ import java.util.PriorityQueue;
 public class Question6 {
     private static int[] distance;
 
-    /*
+    
     // Heap O(VlogE) implementation, in this question E = V.
     public static int shortestServerRoute(int numServers, int targetServer, int[][] times) {
         distance = new int[numServers];
@@ -75,47 +75,47 @@ public class Question6 {
 //        }
     }
 
-*/
 
 
-    // O(V^2) Dijkstra
-    public static int shortestServerRoute(int numServers, int targetServer, int[][] times) {
-        boolean[] isUsed = new boolean[numServers];
-        int[] distance = new int[numServers];
-        distance[0] = 0;
-        for (int i = 1; i < numServers; i++) {
-            distance[i] = Integer.MAX_VALUE;
-        }
-
-        for (int count = 0; count < numServers; count++) {
-            //System.out.println(Arrays.toString(distance));
-            //System.out.println(Arrays.toString(isUsed));
-            int nodeIndex = getMin(isUsed, distance);
-            isUsed[nodeIndex] = true;
-            //System.out.println("node Index " + nodeIndex);
-
-            for (int j = 0; j < numServers; j++) {
-                if (nodeIndex == j) continue;
-                if (!isUsed[j] && distance[nodeIndex] != Integer.MAX_VALUE
-                        && distance[nodeIndex] + times[nodeIndex][j] < distance[j]) {
-                    distance[j] = distance[nodeIndex] + times[nodeIndex][j];
-                }
-            }
-        }
-        return distance[targetServer];
-    }
-
-    public static int getMin(boolean[] isUsed, int[] distance) {
-        int min = Integer.MAX_VALUE;
-        int index = -1;
-        for (int i = 0; i < isUsed.length; i++) {
-            if (!isUsed[i] && distance[i] < min) {
-                min = distance[i];
-                index = i;
-            }
-        }
-        return index;
-    }
+//
+//    // O(V^2) Dijkstra
+//    public static int shortestServerRoute(int numServers, int targetServer, int[][] times) {
+//        boolean[] isUsed = new boolean[numServers];
+//        int[] distance = new int[numServers];
+//        distance[0] = 0;
+//        for (int i = 1; i < numServers; i++) {
+//            distance[i] = Integer.MAX_VALUE;
+//        }
+//
+//        for (int count = 0; count < numServers; count++) {
+//            //System.out.println(Arrays.toString(distance));
+//            //System.out.println(Arrays.toString(isUsed));
+//            int nodeIndex = getMin(isUsed, distance);
+//            isUsed[nodeIndex] = true;
+//            //System.out.println("node Index " + nodeIndex);
+//
+//            for (int j = 0; j < numServers; j++) {
+//                if (nodeIndex == j) continue;
+//                if (!isUsed[j] && distance[nodeIndex] != Integer.MAX_VALUE
+//                        && distance[nodeIndex] + times[nodeIndex][j] < distance[j]) {
+//                    distance[j] = distance[nodeIndex] + times[nodeIndex][j];
+//                }
+//            }
+//        }
+//        return distance[targetServer];
+//    }
+//
+//    public static int getMin(boolean[] isUsed, int[] distance) {
+//        int min = Integer.MAX_VALUE;
+//        int index = -1;
+//        for (int i = 0; i < isUsed.length; i++) {
+//            if (!isUsed[i] && distance[i] < min) {
+//                min = distance[i];
+//                index = i;
+//            }
+//        }
+//        return index;
+//    }
 
 
 
