@@ -8,6 +8,7 @@ public class Question3 {
     public static int lowestExposureToExchanges(int numNodes, Edge[] edgeList) {
         if (numNodes == 0) return 0;
         if (edgeList.length == 0) return numNodes;
+
         graph = new boolean[numNodes + 1][numNodes + 1];
         for (Edge edge : edgeList) {
             int a = edge.getEdgeA();
@@ -17,11 +18,11 @@ public class Question3 {
         }
 
         int minCover = findMinCover(numNodes, edgeList.length, numNodes);
-        System.out.println("Min Cover " + minCover);
+//        System.out.println("Min Cover " + minCover);
         int maxIndependentSet = numNodes - minCover;
-        System.out.println("Max Ind " + maxIndependentSet);
+//        System.out.println("Max Ind " + maxIndependentSet);
         int remaining = numNodes - maxIndependentSet;
-        System.out.println("remaining " + remaining);
+//        System.out.println("remaining " + remaining);
         return Math.abs(maxIndependentSet - remaining);
     }
 
