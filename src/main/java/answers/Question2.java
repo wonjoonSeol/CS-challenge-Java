@@ -6,21 +6,36 @@ public class Question2 {
 
 	public static int equallyBalancedCashFlow(int[] cashflowIn, int[] cashflowOut) {
 		if (cashflowIn.length < cashflowOut.length) {
+			if (cashflowIn.length == 0) return findMin(cashflowOut);
 			return smallestDifference(cashflowIn, cashflowOut);
 		} else {
+			if (cashflowOut.length == 0) return findMin(cashflowIn);
 			return smallestDifference(cashflowOut, cashflowIn);
 		}
+	}
+
+	public static int findMin(int[] arr) {
+		int min = Integer.MAX_VALUE;
+		for (int elem : arr) {
+			if (elem < min) min = elem;
+		}
+		return min;
 	}
 
 	public static int smallestDifference(int[] shorter, int[] longer) {
 		List<Integer> permutations = new ArrayList<Integer>();
 		generatePermutation(shorter, 0, 0, permutations);
-
 //		System.out.println(permutations);
 		int minDifference = Integer.MAX_VALUE;
 		for (int sum : permutations) {
-			Map<String, Integer> memo = new HashMap<>();
-			int temp = findSum(longer, sum, 0, memo);
+			int temp;
+			if (sum > 0) {
+                Map<String, Integer> memo = new HashMap<>();
+                temp = findSum(longer, sum, 0, memo);
+            } else {
+			    temp = findMin(longer);
+            }
+
 			if (temp < minDifference) minDifference = temp;
 //			System.out.println(minDifference);
 		}
@@ -38,9 +53,11 @@ public class Question2 {
 			result.add(sum);
 		} else {
 			generatePermutation(shorter, k + 1, sum + shorter[k], result);
-			if (k != shorter.length - 1) generatePermutation(shorter, k + 1, sum, result);
+//			if (k != shorter.length - 1) generatePermutation(shorter, k + 1, sum, result);
+            generatePermutation(shorter, k + 1, sum, result);
 		}
 	}
+
 
 	/*
 	public static int smallestDifference(int[] shorter, int[] longer, List<Integer> positives, List<Integer> negatives) {

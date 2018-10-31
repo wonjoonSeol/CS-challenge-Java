@@ -8,6 +8,10 @@ import java.util.Map;
 import java.util.Set;
 
 public class Question3 {
+//
+//    public static int lowestExposureToExchanges(int numNodes, Edge[] edgeList) {
+//
+//    }
 
 	// consider bitarray
 	public static int lowestExposureToExchanges(int numNodes, Edge[] edgeList) {
