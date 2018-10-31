@@ -30,7 +30,7 @@ public class Question3 {
         int exchanges = 0;
         while (checkedNodes != numNodes) {
             fillQueue(queue, checked, numNodes);
-            int maxExchange = maxExchanges(map, numNodes, queue, checked);
+            int maxExchange = maxExchanges(map, queue, checked);
 //            System.out.println(maxExchange);
             exchanges += maxExchange;
         }
@@ -38,7 +38,7 @@ public class Question3 {
         return Math.abs(exchanges - remaining);
 	}
 
-	public static int maxExchanges(Map<Integer, Set> map, int numNodes, LinkedList<Node> queue, boolean[] checked) {
+	public static int maxExchanges(Map<Integer, Set> map, LinkedList<Node> queue, boolean[] checked) {
 	    int localNodes = 0, independent = 0;
         while (!queue.isEmpty()) {
             Node currentNode = queue.pop();
