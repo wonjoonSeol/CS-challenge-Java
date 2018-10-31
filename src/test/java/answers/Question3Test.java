@@ -49,6 +49,16 @@ public class Question3Test {
                 new Edge(new int[] {6, 3}), new Edge(new int[] {3, 2}), new Edge(new int[] {2, 4}),
                 new Edge(new int[] {2, 5})};
         timeMethod(edgelist1, 7, 1);
+
+        Edge[] edgelist2 = {new Edge(new int[] {1, 6}), new Edge(new int[] {1, 7}),
+                new Edge(new int[] {6, 3}), new Edge(new int[] {3, 2}), new Edge(new int[] {2, 4}),
+                new Edge(new int[] {2, 5}), new Edge(new int[] {2, 8})};
+        timeMethod(edgelist2, 8, 2);
+
+        Edge[] edgelist3 = {new Edge(new int[] {1, 6}), new Edge(new int[] {1, 7}),
+                new Edge(new int[] {6, 3}), new Edge(new int[] {3, 2}), new Edge(new int[] {2, 4}),
+                new Edge(new int[] {2, 5})};
+        timeMethod(edgelist3, 7, 1);
     }
 
     @Test
