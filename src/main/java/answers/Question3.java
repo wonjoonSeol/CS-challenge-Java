@@ -5,6 +5,8 @@ import helpers.Edge;
 public class Question3 {
     private static boolean[][] graph;
 
+    // need to find clusters by using graph traversal for disjoint cases
+
     public static int lowestExposureToExchanges(int numNodes, Edge[] edgeList) {
         if (numNodes == 0) return 0;
         if (edgeList.length == 0) return numNodes;
@@ -27,38 +29,37 @@ public class Question3 {
     }
 
     public static boolean isCover(int V, int k, int E) {
+        // ------ Gosper’s hack -------------//
         int set = (1 << k) - 1;
         int limit = (1 << V);
-
-        boolean[][] vis = new boolean[V + 1][V + 1];
+        boolean[][] visited = new boolean[V + 1][V + 1];
         while (set < limit) {
             int counter = 0;
-
             for (int i = 1, v = 1 ; i < limit ; i = i << 1, v++) {
                 if ((set & i) > 0) {
                     for (int j = 1 ; j <= V ; j++) {
-                        if (graph[v][j] && !vis[v][j]) {
-                            vis[v][j] = true;
-                            vis[j][v] = true;
+                        if (graph[v][j] && !visited[v][j]) {
+                            visited[v][j] = true;
+                            visited[j][v] = true;
                             counter++;
                         }
                     }
                 }
             }
-
             if (counter == E) return true;
             int c = set & -set;
             int r = set + c;
-            set = (((r^set) >> 2) / c) | r;
+            set = (((r ^ set) >> 2) / c) | r;
         }
         return false;
     }
 
-    public static int findMinCover(int n, int m) {
-        int left = 1, right = n;
+    // Binary search
+    public static int findMinCover(int vertexNum, int edgeNum) {
+        int left = 1, right = vertexNum;
         while (right > left) {
-            int mid = (left + right) >> 1;
-            if (isCover(n, mid, m) == false) {
+            int mid = (left + right) / 2;                           // can do (left + right) >> 1
+            if (isCover(vertexNum, mid, edgeNum) == false) {
                 left = mid + 1;
             } else {
                 right = mid;
@@ -66,7 +67,6 @@ public class Question3 {
         }
         return left;
     }
-
 
     /* Assumes tree
     public static class Node {
@@ -125,7 +125,7 @@ public class Question3 {
     }
 */
 
-    /* Not 'MIN' possible exchanges, or it doesn't find MAX vertex cover
+    /* Not 'MIN' possible exchanges, or it doesn't find MAX vertex cover, only estimation!
     public static int checkedNodes;
 
 	public static int lowestExposureToExchanges(int numNodes, Edge[] edgeList) {
