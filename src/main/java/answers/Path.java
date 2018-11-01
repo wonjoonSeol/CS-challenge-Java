@@ -33,7 +33,7 @@ public class Path {
     }
 
     public String toString() {
-        return "{"+ distance + ", " + visited.toString() + "}";
+        return "{" + distance + ", " + visited.toString() + "}";
 
     }
 }

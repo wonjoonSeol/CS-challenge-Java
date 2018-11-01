@@ -35,9 +35,9 @@ public class Question3 {
         boolean[][] visited = new boolean[V + 1][V + 1];
         while (set < limit) {
             int counter = 0;
-            for (int i = 1, v = 1 ; i < limit ; i = i << 1, v++) {
+            for (int i = 1, v = 1; i < limit; i = i << 1, v++) {
                 if ((set & i) > 0) {
-                    for (int j = 1 ; j <= V ; j++) {
+                    for (int j = 1; j <= V; j++) {
                         if (graph[v][j] && !visited[v][j]) {
                             visited[v][j] = true;
                             visited[j][v] = true;

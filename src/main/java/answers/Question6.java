@@ -24,7 +24,7 @@ public class Question6 {
 
             // skip old nodes
             while (node.status != nodeStatus[node.name]) {
-               node = heap.poll();
+                node = heap.poll();
             }
 
             int current = node.name;
@@ -44,7 +44,7 @@ public class Question6 {
     }
 
 
-    public static class Node implements Comparable<Node>{
+    public static class Node implements Comparable<Node> {
         public int name;
         public int status;
 
@@ -74,7 +74,6 @@ public class Question6 {
 //            return false;
 //        }
     }
-
 
 
 //
@@ -116,8 +115,6 @@ public class Question6 {
 //        }
 //        return index;
 //    }
-
-
 
 
     // ------------- Previous methods -------------- //

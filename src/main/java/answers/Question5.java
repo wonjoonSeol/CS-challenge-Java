@@ -2,13 +2,13 @@ package answers;
 
 public class Question5 {
 
-	public static int shareExchange(int[] allowedAllocations, int totalValue) {
-		int result = minAllocations(allowedAllocations, totalValue);
-		return result == Integer.MAX_VALUE ? 0 : result;
-	}
+    public static int shareExchange(int[] allowedAllocations, int totalValue) {
+        int result = minAllocations(allowedAllocations, totalValue);
+        return result == Integer.MAX_VALUE ? 0 : result;
+    }
 
 
-	public static int minAllocations(int[] allowedAllocations, int total) {
+    public static int minAllocations(int[] allowedAllocations, int total) {
         int[] memo = new int[total + 1];
         memo[0] = 0;
         for (int i = 1; i <= total; i++) {
